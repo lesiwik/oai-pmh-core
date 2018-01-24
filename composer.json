@@ -1,0 +1,20 @@
+{
+    "name": "fccn/oai-pmh-core",
+    "description": "Implementation of the core functionalities for an OAI-PMH 2.0 Data Provider written in PHP",
+    "keywords": ["fccn", "oai-pmh", "DublinCore", "LOM", "Learning Object Metadata"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Paulo Costa",
+            "email": "paulo.costa@fccn.pt"
+        }
+    ],
+    "require": {
+      "php": ">=5.5.0"
+    },
+    "autoload":{
+      "psr-4": {
+        "Fccn\\Oaipmh\\": "src/"
+      }
+    }
+}
