@@ -49,7 +49,9 @@ function prepare_metadata($record_id, $setspec, $pdo, $meta_format)
     if (isset($config['pdo'][$meta_format][$setspec]['fetch'])) {
         //query is specific to set
         // debug_message("record_dc :: query specific to $setspec");
-        $query = $config['pdo'][$meta_format][$setspec]['fetch']." WHERE ".$config['pdo'][$meta_format][$setspec]['identifier']." = '$record_id'";
+//        $query = $config['pdo'][$meta_format][$setspec]['fetch']." WHERE ".$config['pdo'][$meta_format][$setspec]['identifier']." = '$record_id'";
+        $query = $config['pdo'][$meta_format][$setspec]['fetch'] . " WHERE book.contents#>>'{" . $config['pdo']['oaidcIdentifierMetaDataNumber'] . ",0,value}'= '" . $record_id . "'";
+
     } elseif (isset($config['pdo'][$fallback_mformat][$setspec]['fetch'])) {
         //check fallback metadataformat
         $query = $config['pdo'][$fallback_mformat][$setspec]['fetch']." WHERE ".$config['pdo'][$fallback_mformat][$setspec]['identifier']." = '$record_id'";

@@ -59,11 +59,18 @@ $errors = array();
  */
 $args = array();
 
+if(isset($_GET['verb']) && $_GET['verb']!='Identify' && $_GET[verb]!='ListMetadataFormats' && $_GET[verb]!='ListSets'){
+if(!isset($_GET['metadataPrefix'])){
+    $_GET['metadataPrefix']='oai_dc';
+}
+}
+
 /**
  * Executes a OAI-PMH request
  */
 function execute_request($path_to_config = '')
 {
+
     global $config, $corepath, $args, $errors;
 
     if ($path_to_config == '' || !file_exists($path_to_config)) {
@@ -85,7 +92,8 @@ function execute_request($path_to_config = '')
     */
     $attribs = array('from', 'identifier', 'metadataPrefix', 'set', 'resumptionToken', 'until');
     if (in_array($_SERVER['REQUEST_METHOD'], array('GET','POST'))) {
-        $args = $_REQUEST;
+//        $args = $_REQUEST;
+        $args = $_GET;
     } else {
         $errors[] = oai_error('badRequestMethod', $_SERVER['REQUEST_METHOD']);
         oai_exit();

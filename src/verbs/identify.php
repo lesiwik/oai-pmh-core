@@ -44,19 +44,21 @@ debug_var_dump('identifty_config', $config);
 //response
 $identifyResponse = array(
     'repositoryName' => $config['repository']['name'],
+    'baseURL' => $config['repository']['baseURL'],
     'protocolVersion' => $config['repository']['protocolVersion'],
+    'adminEmail' => $config['repository']['adminEmail'],
     'earliestDatestamp' => $config['repository']['earliestDatestamp'],
     'deletedRecord' => $config['repository']['deletedRecord'],
     'granularity' => $config['repository']['granularity']
 );
 //base url
-if (isset($config['repository']['baseURL'])) {
-    $identifyResponse['baseURL'] = $config['repository']['baseURL'];
-} else {
-    $identifyResponse['baseURL'] = $_SERVER['SERVER_NAME'];
-}
+//if (isset($config['repository']['baseURL'])) {
+//    $identifyResponse['baseURL'] = $config['repository']['baseURL'];
+//} else {
+//    $identifyResponse['baseURL'] = $_SERVER['SERVER_NAME'];
+//}
 
-$adminEmail = $config['repository']['adminEmail'];
+//$adminEmail = $config['repository']['adminEmail'];
 $identifyResponseBranding = $config['branding'];
 
 if (isset($config['rights'])) {
@@ -69,9 +71,9 @@ foreach ($identifyResponse as $key => $val) {
     $outputObj->add2_verbNode($key, $val);
 }
 
-foreach ($adminEmail as $val) {
-    $outputObj->add2_verbNode("adminEmail", $val);
-}
+//foreach ($adminEmail as $val) {
+//    $outputObj->add2_verbNode("adminEmail", $val);
+//}
 
 if (isset($config['repository']['compression'])) {
     debug_var_dump('identifty_compression', $config['repository']['compression']);
@@ -171,21 +173,21 @@ if (isset($identifyRights)) {
 
 //toolkit description
 // if (true) {
-  // $output .=
+//   $output .=
 // '  <description>
-     // <toolkit xmlns="http://oai.dlib.vt.edu/OAI/metadata/toolkit"
-              // xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              // xsi:schemaLocation="http://oai.dlib.vt.edu/OAI/metadata/toolkit http://oai.dlib.vt.edu/OAI/metadata/toolkit.xsd">
-       // <title>OAI-PMH PHP Connector</title>
-       // <author>
-         // <name>Rui Ribeiro</name><email>rui.ribeiro@fccn.pt</email>
-         // <institution>FCCN|FCT</institution>
-       // </author>
-       // <version>' . $config['debug']['version'] . '</version>
-       // <toolkitIcon>http://alcme.oclc.org/oaicat/oaicat_icon.gif</toolkitIcon>
-       // <URL>http://www.oclc.org/research/software/oai/cat.shtm</URL>
-     // </toolkit>
-   // </description>' . "\n";
+//      <toolkit xmlns="http://oai.dlib.vt.edu/OAI/metadata/toolkit"
+//               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+//               xsi:schemaLocation="http://oai.dlib.vt.edu/OAI/metadata/toolkit http://oai.dlib.vt.edu/OAI/metadata/toolkit.xsd">
+//        <title>OAI-PMH PHP Connector</title>
+//        <author>
+//          <name>Rui Ribeiro</name><email>rui.ribeiro@fccn.pt</email>
+//          <institution>FCCN|FCT</institution>
+//        </author>
+//        <version>' . $config['debug']['version'] . '</version>
+//        <toolkitIcon>http://alcme.oclc.org/oaicat/oaicat_icon.gif</toolkitIcon>
+//        <URL>http://www.oclc.org/research/software/oai/cat.shtm</URL>
+//      </toolkit>
+//    </description>' . "\n";
 // }
 
 if (strlen($output)>10) {

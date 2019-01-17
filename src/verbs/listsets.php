@@ -52,7 +52,7 @@ if (is_array($config->repository->sets)) {
                 $des = $outputObj->doc->createDocumentFragment();
                 $des->appendXML($val);
                 $desNode->appendChild($des);
-            } elseif ($key=='setSpec') {
+            } elseif ($key=='setSpec' || $key=='setName') {
                 $outputObj->addChild($setNode, $key, $val);
             }
             //ignore the rest of the keys

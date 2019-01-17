@@ -150,7 +150,7 @@ if (!empty($errors)) {
 
 $maxrec = min($num_rows - $deliveredrecords, $maxItems);
 
-debug_message(">>>listrecords-checkpoint 01: maxrec=".$maxrec.", maxItems=".$maxItems.", deliveredRecords=".$deliveredrecords);
+debug_message(">>>listrecords-checkpoint 01: maxrec=".$maxrec.", maxItems=".$maxItems.", deliveredRecords=".$deliveredrecords.", numrows=".$num_rows);
 
 if ($num_rows - $deliveredrecords > $maxItems) {
     $cursor = (int)$deliveredrecords + $maxItems;
@@ -206,7 +206,9 @@ while ($countrec++ < $maxrec) {
     $datestamp = formatDatestamp($record[$config->pdo->datestamp]);
     // debug_var_dump('datestamp', $datestamp);
 
-    $setspec = $record[$config->pdo->setspec];
+    //$setspec = $record[$config->pdo->setspec];
+    $setspec = strtr($record[$config->pdo->setspec],[' '=>'']);
+
     // debug_var_dump('setspec', $setspec);
 
     // debug_var_dump('record', $record);
